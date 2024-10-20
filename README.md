@@ -1,1 +1,1 @@
-# time-series-generation-performance-bounds-using-reservoirs
+# Fundamental performance bounds on time-series generation using reservoir computing
