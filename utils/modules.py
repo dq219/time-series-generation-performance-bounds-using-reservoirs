@@ -99,7 +99,7 @@ class net:
 
         return [T, h, r]
 
-    def simulate_train(self, t_max, target, α = 1, mode = 'FORCE', t_ini = 0, γ = 0.0, keep_last_state = True):
+    def simulate_train(self, t_max, target, α = 1, mode = 'FORCE', t_ini = 0, γ = 0.0, η = 0.0, keep_last_state = True):
 
         tN = int((t_max - t_ini) / self.dt)
 
@@ -139,7 +139,7 @@ class net:
             elif mode == 'echo':
                 I = target_val
 
-            h[i + 1] = h[i] + self.dt * self.dhdt(h[i], r[i], I)
+            h[i + 1] = h[i] + self.dt * self.dhdt(h[i], r[i], I) + η * np.sqrt(self.dt) * np.random.randn(self.N)
             r[i + 1] = self.φ(h[i + 1])
             z[i + 1] = w[i].T.dot(r[i + 1]).flatten()
             e[i + 1] = z[i + 1] - target_val
