@@ -137,7 +137,7 @@ class net:
             if mode == 'FORCE':
                 I = self.K.dot(z[i])
             elif mode == 'echo':
-                I = target_val
+                I = self.K.dot(target_val)
 
             h[i + 1] = h[i] + self.dt * self.dhdt(h[i], r[i], I) + η * np.sqrt(self.dt) * np.random.randn(self.N)
             r[i + 1] = self.φ(h[i + 1])
